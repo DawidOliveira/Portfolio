@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/core/extensions.dart';
+import 'package:portfolio/app/shared/utils/responsive_data.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_sizes.dart';
@@ -18,9 +19,9 @@ class HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(
+      margin: EdgeInsets.symmetric(
         vertical: AppSizes.spacing32px,
-        horizontal: AppSizes.spacing32px,
+        horizontal: isMobile ? 0 : AppSizes.spacing32px,
       ),
       height: AppSizes.spacing64px,
       child: Row(

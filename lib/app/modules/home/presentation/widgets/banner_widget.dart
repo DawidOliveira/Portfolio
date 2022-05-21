@@ -26,6 +26,7 @@ class BannerWidget extends StatelessWidget {
             flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (!banner.tip.isNullOrEmpty)
                   SelectableText(
