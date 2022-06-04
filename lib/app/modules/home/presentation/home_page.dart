@@ -83,6 +83,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         const SizedBox.shrink(),
                         ...page?.items.map((e) => e.buildWidget) ?? [],
+                        const SizedBox.shrink(),
                       ],
                     ),
                   );

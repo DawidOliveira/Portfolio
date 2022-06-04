@@ -17,6 +17,9 @@ class AppTextStyles {
     fontSize: 24,
     fontWeight: FontWeight.bold,
   );
+  static final miniTitle = GoogleFonts.poppins(
+    fontSize: 20,
+  );
   static final body = GoogleFonts.poppins(
     fontSize: 16,
   );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/modules/home/presentation/widgets/banner_widget.dart';
+import 'package:portfolio/app/modules/home/presentation/widgets/descriptive_widget.dart';
 
 import '../../domain/entities/item_entity.dart';
 import '../../infra/models/item_model.dart';
@@ -16,7 +17,13 @@ extension ItemWidget on ItemModel? {
 
         return BannerWidget(banner: banner);
       },
-      ItemType.descriptive: (ItemModel item) => const SizedBox(),
+      ItemType.descriptive: (ItemModel item) {
+        final descriptive = item.descriptive;
+
+        if (descriptive == null) return const SizedBox.shrink();
+
+        return DescriptiveWidget(descriptive: descriptive);
+      },
     };
 
     if (map[this!.type] == null) return const SizedBox.shrink();

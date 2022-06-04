@@ -25,7 +25,7 @@ class BannerWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +95,7 @@ class BannerWidget extends StatelessWidget {
             ),
           ),
           if (!AppResponsive.isMobile) ...[
-            const SizedBox(width: AppSizes.spacing32px),
+            const SizedBox(width: AppSizes.spacing64px),
             Expanded(
               child: banner.imageUrl != null
                   ? Image.network(

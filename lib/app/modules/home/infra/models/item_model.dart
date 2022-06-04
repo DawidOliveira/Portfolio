@@ -24,31 +24,9 @@ class ItemModel extends ItemEntity {
     );
   }
 
-  String? get typeToStr {
-    final map = {
-      ItemType.banner: 'banner',
-      ItemType.descriptive: 'descriptive',
-    };
-
-    if (map[type] == null) return null;
-
-    return map[type];
-  }
-
-  static ItemType? strToType(String value) {
-    final map = {
-      'banner': ItemType.banner,
-      'descriptive': ItemType.descriptive,
-    };
-
-    if (map[value] == null) return null;
-
-    return map[value];
-  }
-
   Map<String, dynamic> toMap() {
     return {
-      'type': typeToStr,
+      'type': ItemType.typeToStr(type),
       'banner': banner?.toMap(),
       'descriptive': descriptive?.toMap(),
     };
@@ -56,7 +34,7 @@ class ItemModel extends ItemEntity {
 
   factory ItemModel.fromMap(Map<String, dynamic> map) {
     return ItemModel(
-      type: strToType(map['type']),
+      type: ItemType.strToType(map['type']),
       banner: map['banner'] != null ? BannerModel.fromMap(map['banner']) : null,
       descriptive: map['descriptive'] != null
           ? DescriptiveModel.fromMap(map['descriptive'])
