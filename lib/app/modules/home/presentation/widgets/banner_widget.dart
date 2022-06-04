@@ -94,7 +94,8 @@ class BannerWidget extends StatelessWidget {
               ],
             ),
           ),
-          if (!AppResponsive.isMobile)
+          if (!AppResponsive.isMobile) ...[
+            const SizedBox(width: AppSizes.spacing32px),
             Expanded(
               child: banner.imageUrl != null
                   ? Image.network(
@@ -103,6 +104,7 @@ class BannerWidget extends StatelessWidget {
                     )
                   : const SizedBox.shrink(),
             ),
+          ]
         ],
       ),
     );
