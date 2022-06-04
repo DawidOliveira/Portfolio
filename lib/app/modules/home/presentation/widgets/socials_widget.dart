@@ -26,15 +26,8 @@ class SocialsWidget extends StatelessWidget {
               radius: AppSizes.spacing64px - AppSizes.spacing4px,
               child: CircleAvatar(
                 radius: AppSizes.spacing64px - AppSizes.spacing8px,
-                child: Image.network(
+                foregroundImage: NetworkImage(
                   descriptive.imageUrl!,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) {
-                    return const Icon(
-                      Icons.person_outline_outlined,
-                      size: AppSizes.spacing80px,
-                    );
-                  },
                 ),
               ),
             ),
