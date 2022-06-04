@@ -13,6 +13,10 @@ class AppTextStyles {
     fontSize: 24,
     fontWeight: FontWeight.bold,
   );
+  static final titleLogo = GoogleFonts.cabin(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
   static final body = GoogleFonts.poppins(
     fontSize: 16,
   );

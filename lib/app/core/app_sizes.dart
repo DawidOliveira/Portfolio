@@ -9,6 +9,7 @@ class AppSizes {
   static const spacing16px = 16.0;
   static const spacing32px = 32.0;
   static const spacing64px = 64.0;
+  static const spacing80px = 80.0;
   static const spacing128px = 128.0;
 
   static final borderRadius2px = BorderRadius.circular(2);

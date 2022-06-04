@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/core/extensions.dart';
+import 'package:portfolio/app/core/app_extensions.dart';
+import 'package:portfolio/app/core/app_responsive.dart';
 import 'package:portfolio/app/modules/home/domain/entities/banner_entity.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -17,8 +18,9 @@ class BannerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: AppSizes.spacing32px),
+      width: MediaQuery.of(context).size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -52,36 +54,39 @@ class BannerWidget extends StatelessWidget {
                 if (!banner.textButton.isNullOrEmpty &&
                     !banner.downloadFileUrl.isNullOrEmpty) ...[
                   const SizedBox(height: AppSizes.spacing16px),
-                  ElevatedButton(
-                    onPressed: () async {
-                      final canLaunch =
-                          await canLaunchUrlString(banner.downloadFileUrl!);
+                  SizedBox(
+                    width: AppResponsive.isMobile ? double.infinity : null,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        final canLaunch =
+                            await canLaunchUrlString(banner.downloadFileUrl!);
 
-                      if (!canLaunch) return;
+                        if (!canLaunch) return;
 
-                      launchUrlString(banner.downloadFileUrl!);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      enabledMouseCursor: SystemMouseCursors.click,
-                      shadowColor: AppColors.transparent,
-                      primary: AppColors.transparent,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: AppSizes.spacing16px,
-                        horizontal: AppSizes.spacing32px,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: AppSizes.borderRadius4px,
-                        side: const BorderSide(
-                          width: 1,
-                          color: AppColors.primary,
+                        launchUrlString(banner.downloadFileUrl!);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        enabledMouseCursor: SystemMouseCursors.click,
+                        shadowColor: AppColors.transparent,
+                        primary: AppColors.transparent,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSizes.spacing16px,
+                          horizontal: AppSizes.spacing32px,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: AppSizes.borderRadius4px,
+                          side: const BorderSide(
+                            width: 1,
+                            color: AppColors.primary,
+                          ),
                         ),
                       ),
-                    ),
-                    child: Text(
-                      banner.textButton!,
-                      style: AppTextStyles.body.copyWith(
-                        color: AppColors.primary,
+                      child: Text(
+                        banner.textButton!,
+                        style: AppTextStyles.body.copyWith(
+                          color: AppColors.primary,
+                        ),
                       ),
                     ),
                   ),
@@ -89,14 +94,15 @@ class BannerWidget extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: banner.imageUrl != null
-                ? Image.network(
-                    banner.imageUrl!,
-                    errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-                  )
-                : const SizedBox.shrink(),
-          ),
+          if (!AppResponsive.isMobile)
+            Expanded(
+              child: banner.imageUrl != null
+                  ? Image.network(
+                      banner.imageUrl!,
+                      errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                    )
+                  : const SizedBox.shrink(),
+            ),
         ],
       ),
     );

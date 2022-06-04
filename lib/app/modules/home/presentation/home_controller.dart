@@ -13,6 +13,7 @@ class HomeController extends ChangeNotifier with LoadingMixin {
   }
 
   final pageController = PageController();
+  final scrollController = ScrollController();
 
   final _home = ValueNotifier<HomeEntity?>(null);
   final _currentPage = ValueNotifier<int>(0);
